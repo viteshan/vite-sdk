@@ -1,0 +1,6 @@
+wallet-java-sdk/*.iml
+wallet-java-sdk/target/
+wallet-java-sdk/testdata/
+wallet-java-sdk-examples/*.iml
+wallet-java-sdk-examples/target/
+wallet-java-sdk-examples/testdata/
