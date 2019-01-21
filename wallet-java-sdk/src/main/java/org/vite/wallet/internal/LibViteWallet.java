@@ -71,6 +71,9 @@ public class LibViteWallet {
 
         public InternalWallet() {
             InputStream is = InternalWallet.class.getClassLoader().getResourceAsStream(System.mapLibraryName(LIB_NAME));
+            if (is == null) {
+                throw new RuntimeException("can't load vitewallet lib[" + System.mapLibraryName(LIB_NAME) + "].");
+            }
             try {
                 Loader.loadFromStream(is);
             } catch (IOException e) {
