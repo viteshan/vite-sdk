@@ -59,6 +59,12 @@ public class LibViteWalletTest {
         Assert.assertTrue(recoverResult.getError(), recoverResult.success());
         Assert.assertEquals(recoverResult.getData(), tmpAddress, recoverResult.getData());
 
+
+        // extract mnemonic
+        Result<String> extractMnemonicResult = wallet.extractMnemonic(tmpAddress, passphrase);
+        Assert.assertTrue(extractMnemonicResult.getError(), extractMnemonicResult.success());
+        Assert.assertEquals(extractMnemonicResult.getData(), tmpMnemonic, extractMnemonicResult.getData());
+
         // list entropy store
         Result<List<String>> listResult = wallet.listAllEntropyFiles();
         Assert.assertTrue(listResult.getError(), listResult.success());
@@ -77,7 +83,6 @@ public class LibViteWalletTest {
         Result<String> dataDirResult = wallet.getDataDir();
         Assert.assertTrue(dataDirResult.getError(), dataDirResult.success());
         Assert.assertEquals(dataDirResult.getData(), file.getAbsolutePath(), dataDirResult.getData());
-
 
 
         final Base64 base64 = new Base64();
