@@ -40,7 +40,7 @@ public class LibViteWalletTest {
 
 
         // random mnemonic
-        Result<String> randomMnemonic = wallet.randomMnemonic("", 24);
+        Result<String> randomMnemonic = wallet.randomMnemonic(24);
         Assert.assertTrue(randomMnemonic.getError(), voidResult.success());
         String mneMonic = randomMnemonic.getData();
         System.out.println(mneMonic);
@@ -49,13 +49,13 @@ public class LibViteWalletTest {
 
         // mnemonic to address
         String tmpMnemonic = "curious smooth maid gate label impact pear crucial sugar horror visual toss talk flash income silly peace best act dress brand gas chief fetch";
-        Result<String> addressResult = wallet.transformMnemonic(tmpMnemonic, "", "");
+        Result<String> addressResult = wallet.transformMnemonic(tmpMnemonic);
         Assert.assertTrue(addressResult.getError(), addressResult.success());
         Assert.assertEquals(addressResult.getData(), tmpAddress, addressResult.getData());
 
         // recover from mnemonic
         String passphrase = "123456";
-        Result<String> recoverResult = wallet.recoverEntropyStoreFromMnemonic(tmpMnemonic, passphrase, "", "");
+        Result<String> recoverResult = wallet.recoverEntropyStoreFromMnemonic(tmpMnemonic, passphrase);
         Assert.assertTrue(recoverResult.getError(), recoverResult.success());
         Assert.assertEquals(recoverResult.getData(), tmpAddress, recoverResult.getData());
 
@@ -75,7 +75,7 @@ public class LibViteWalletTest {
         Assert.assertTrue(unlockResult.getError(), unlockResult.success());
 
         // derive address by index
-        Result<DerivationResult> derivationResultResult = wallet.deriveByIndex(tmpAddress, 0, "");
+        Result<DerivationResult> derivationResultResult = wallet.deriveByIndex(tmpAddress, 0);
         Assert.assertTrue(derivationResultResult.getError(), derivationResultResult.success());
         Assert.assertEquals(JSON.toJSONString(derivationResultResult.getData()), tmpAddress, derivationResultResult.getData().getAddress());
 

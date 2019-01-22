@@ -30,13 +30,13 @@ public class LibViteWallet {
 
         Result<Void> removeEntropyStore(String entropyStore);
 
-        Result<String> recoverEntropyStoreFromMnemonic(String mnemonic, String newPassphrase, String language, String extensionWord);
+        Result<String> recoverEntropyStoreFromMnemonic(String mnemonic, String newPassphrase);
 
-        Result<EntropyResult> newMnemonicAndEntropyStore(String passphrase, String language, String extensionWord, int mnemonicSize);
+        Result<EntropyResult> newMnemonicAndEntropyStore(String passphrase, int mnemonicSize);
 
-        Result<DerivationResult> deriveByFullPath(String entropyStore, String fullpath, String extensionWord);
+        Result<DerivationResult> deriveByFullPath(String entropyStore, String fullpath);
 
-        Result<DerivationResult> deriveByIndex(String entropyStore, int index, String extensionWord);
+        Result<DerivationResult> deriveByIndex(String entropyStore, int index);
 
         Result<String> extractMnemonic(String entropyStore, String passphrase);
 
@@ -54,9 +54,9 @@ public class LibViteWallet {
 
         Result<String> pubkeyToAddress(String pubBase64);
 
-        Result<String> transformMnemonic(String mnemonic, String language, String extensionWord);
+        Result<String> transformMnemonic(String mnemonic);
 
-        Result<String> randomMnemonic(String language, int mnemonicSize);
+        Result<String> randomMnemonic(int mnemonicSize);
 
         Result<String> computeHashForAccountBlock(String blockJson);
 
@@ -134,26 +134,26 @@ public class LibViteWallet {
         }
 
         @Override
-        public Result<String> recoverEntropyStoreFromMnemonic(String mnemonic, String newPassphrase, String language, String extensionWord) {
-            return convertAndFreePointer(nativeLib.RecoverEntropyStoreFromMnemonic(mnemonic, newPassphrase, language, extensionWord), new TypeReference<Result<String>>() {
+        public Result<String> recoverEntropyStoreFromMnemonic(String mnemonic, String newPassphrase) {
+            return convertAndFreePointer(nativeLib.RecoverEntropyStoreFromMnemonic(mnemonic, newPassphrase, "", ""), new TypeReference<Result<String>>() {
             });
         }
 
         @Override
-        public Result<EntropyResult> newMnemonicAndEntropyStore(String passphrase, String language, String extensionWord, int mnemonicSize) {
-            return convertAndFreePointer(nativeLib.NewMnemonicAndEntropyStore(passphrase, language, extensionWord, mnemonicSize), new TypeReference<Result<EntropyResult>>() {
+        public Result<EntropyResult> newMnemonicAndEntropyStore(String passphrase, int mnemonicSize) {
+            return convertAndFreePointer(nativeLib.NewMnemonicAndEntropyStore(passphrase, "", "", mnemonicSize), new TypeReference<Result<EntropyResult>>() {
             });
         }
 
         @Override
-        public Result<DerivationResult> deriveByFullPath(String entropyStore, String fullpath, String extensionWord) {
-            return convertAndFreePointer(nativeLib.DeriveByFullPath(entropyStore, fullpath, extensionWord), new TypeReference<Result<DerivationResult>>() {
+        public Result<DerivationResult> deriveByFullPath(String entropyStore, String fullpath) {
+            return convertAndFreePointer(nativeLib.DeriveByFullPath(entropyStore, fullpath, ""), new TypeReference<Result<DerivationResult>>() {
             });
         }
 
         @Override
-        public Result<DerivationResult> deriveByIndex(String entropyStore, int index, String extensionWord) {
-            return convertAndFreePointer(nativeLib.DeriveByIndex(entropyStore, index, extensionWord), new TypeReference<Result<DerivationResult>>() {
+        public Result<DerivationResult> deriveByIndex(String entropyStore, int index) {
+            return convertAndFreePointer(nativeLib.DeriveByIndex(entropyStore, index, ""), new TypeReference<Result<DerivationResult>>() {
             });
         }
 
@@ -206,14 +206,14 @@ public class LibViteWallet {
         }
 
         @Override
-        public Result<String> transformMnemonic(String mnemonic, String language, String extensionWord) {
-            return convertAndFreePointer(nativeLib.TransformMnemonic(mnemonic, language, extensionWord), new TypeReference<Result<String>>() {
+        public Result<String> transformMnemonic(String mnemonic) {
+            return convertAndFreePointer(nativeLib.TransformMnemonic(mnemonic, "", ""), new TypeReference<Result<String>>() {
             });
         }
 
         @Override
-        public Result<String> randomMnemonic(String language, int mnemonicSize) {
-            return convertAndFreePointer(nativeLib.RandomMnemonic(language, mnemonicSize), new TypeReference<Result<String>>() {
+        public Result<String> randomMnemonic(int mnemonicSize) {
+            return convertAndFreePointer(nativeLib.RandomMnemonic("", mnemonicSize), new TypeReference<Result<String>>() {
             });
         }
 
